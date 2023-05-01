@@ -30,6 +30,24 @@ describe("when users request /api/:date endpoint", () => {
       });
     });
 
+    it("should return JSON with date in UTC format and its unix timestamp", async () => {
+      const response = await supertest(app).get("/api/2016-12-25");
+
+      expect(response.body).toMatchObject({
+        unix: 1482624000000,
+        utc: "Sun, 25 Dec 2016 00:00:00 GMT",
+      });
+    });
+
+    it("should return JSON with date in UTC format and its unix timestamp", async () => {
+      const response = await supertest(app).get("/api/05 October 2011, GMT");
+
+      expect(response.body).toMatchObject({
+        unix: 1317772800000,
+        utc: "Wed, 05 Oct 2011 00:00:00 GMT",
+      });
+    });
+
     it("should return with status code 200", async () => {
       const response = await supertest(app).get("/api");
 

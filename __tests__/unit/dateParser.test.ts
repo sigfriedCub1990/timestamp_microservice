@@ -9,6 +9,13 @@ describe("DateValidator tests", () => {
 
         expect(actual).toBeTruthy();
       });
+
+      it("should return true", () => {
+        const date = "05 October 2011, GMT";
+        const actual = DateParser.validate(date);
+
+        expect(actual).toBeTruthy();
+      });
     });
 
     describe("given a valid unix timestamp", () => {
