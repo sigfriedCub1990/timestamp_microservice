@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import validateDate from "./middlewares/validateDate";
 import DateParser from "./lib/dateParser";
@@ -7,6 +8,8 @@ import DateParser from "./lib/dateParser";
 dotenv.config();
 
 const app = express();
+
+app.use(cors());
 
 app.get("/api", (_, res) => {
   const date = new Date();
